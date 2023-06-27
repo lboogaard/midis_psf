@@ -5,9 +5,9 @@ from astropy.io import fits
 from astropy.wcs import WCS
 
 PSF_MAP = './data-{}/midis_psf_map.fits'
-PSF_TMPL = './data-{}/HUDF_F560W_i2d-psf_inserted-original{}-cutout-bg-norm.fits'
+PSF_TMPL = './data-{}/{}mas/HUDF_F560W_i2d-psf_inserted-original{}-cutout-bg-norm.fits'
 
-def get_psf(ra_deg, dec_deg, filename_only=True, version='v2'):
+def get_psf(ra_deg, dec_deg, filename_only=True, version='v2', pixscale=60):
     """Get MIDI PSF model for (ra,dec).
 
     ra_deg: float
@@ -33,10 +33,10 @@ def get_psf(ra_deg, dec_deg, filename_only=True, version='v2'):
             print(f"No psf for ({ra_deg}, {dec_deg}).")
             return 0
         elif filename_only:
-            print(PSF_TMPL.format(version, psf_idx))
-            return PSF_TMPL.format(version, psf_idx)
+            print(PSF_TMPL.format(version, pixscale, psf_idx))
+            return PSF_TMPL.format(version, pixscale, psf_idx)
         else:
-            with fits.open(PSF_TMPL.format(version, psf_idx)) as hdu2:
+            with fits.open(PSF_TMPL.format(version, pixscale, psf_idx)) as hdu2:
                 return hdu2[0].data
 
 
@@ -51,10 +51,12 @@ def main(args=None):
                         help="return filename only (default: true)")
     parser.add_argument('-v', '--version', type=str, default='v2',
                         help="version of psf to use (default: latest)")
-    
+    parser.add_argument('-p', '--pixscale', type=int, default=60,
+                        choices=[30, 40, 60], help="pixscale in mas")
+
     args = parser.parse_args(args)
 
-    return get_psf(args.ra_deg, args.dec_deg, args.filename_only, args.version)
+    return get_psf(args.ra_deg, args.dec_deg, args.filename_only, args.version, args.pixscale)
 
 
 if __name__ == '__main__':
