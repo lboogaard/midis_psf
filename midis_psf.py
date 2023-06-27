@@ -1,11 +1,13 @@
 #!/usr/bin/env  python
 
+import os
 import argparse
 from astropy.io import fits
 from astropy.wcs import WCS
 
-PSF_MAP = './data-{}/midis_psf_map.fits'
-PSF_TMPL = './data-{}/{}mas/HUDF_F560W_i2d-psf_inserted-original{}-cutout-bg-norm.fits'
+ROOT = os.path.dirname(__file__)
+PSF_MAP = os.path.join(ROOT, './data-{}/midis_psf_map.fits')
+PSF_TMPL = os.path.join(ROOT, './data-{}/{}mas/HUDF_F560W_i2d-psf_inserted-original{}-cutout-bg-norm.fits')
 
 def get_psf(ra_deg, dec_deg, filename_only=True, version='v2', pixscale=60):
     """Get MIDI PSF model for (ra,dec).
