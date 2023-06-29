@@ -9,7 +9,7 @@ ROOT = os.path.dirname(__file__)
 PSF_MAP = os.path.join(ROOT, './data-{}/midis_psf_map.fits')
 PSF_TMPL = os.path.join(ROOT, './data-{}/{}mas/HUDF_F560W_i2d-psf_inserted-original{}-cutout-bg-norm.fits')
 
-def get_psf(ra_deg, dec_deg, filename_only=True, version='v2', pixscale=60):
+def get_psf(ra_deg, dec_deg, filename_only=True, version='v3', pixscale=60):
     """Get MIDI PSF model for (ra,dec).
 
     ra_deg: float
@@ -51,7 +51,7 @@ def main(args=None):
                         help="dec in degrees")
     parser.add_argument('-f', '--filename_only', type=bool, default=True,
                         help="return filename only (default: true)")
-    parser.add_argument('-v', '--version', type=str, default='v2',
+    parser.add_argument('-v', '--version', type=str, default='v3',
                         help="version of psf to use (default: latest)")
     parser.add_argument('-p', '--pixscale', type=int, default=60,
                         choices=[30, 40, 60], help="pixscale in mas")
