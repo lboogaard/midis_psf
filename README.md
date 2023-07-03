@@ -17,4 +17,4 @@ psf = midis_psf.get_psf(53.1751187, -27.7665497, filename_only=False, pixscale=3
 ## The Data (v2)
 See Boogaard et al. (in prep.) for more details.
 ![psf_map](data-v2/map_psf_v2.png)
-![psf_tmpl](data-v2/60mas/psf_tmpl_v3.png)
+![psf_tmpl](data-v3/60mas/psf9-recovered-v3-60mas.png)
