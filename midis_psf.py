@@ -8,14 +8,27 @@ from astropy.wcs import WCS
 ROOT = os.path.dirname(__file__)
 PSF_MAP = os.path.join(ROOT, './data-{}/midis_psf_map.fits')
 PSF_TMPL = os.path.join(ROOT, './data-{}/{}mas/HUDF_F560W_i2d-psf_inserted-original{}-cutout-bg-norm.fits')
+LATEST_VERSION='v5'
 
-def get_psf(ra_deg, dec_deg, filename_only=True, version='v3', pixscale=60):
+def get_psf(ra_deg, dec_deg, filename_only=True, version=LATEST_VERSION, pixscale=60):
     """Get MIDI PSF model for (ra,dec).
 
+    Parameters
+    ----------
     ra_deg: float
        ra in degrees
     deg_deg: float
        deg in degrees
+    filename_only: bool (default: True)
+       return filename only
+    version: string (default: latest)
+       version of psf to use
+    pixscale: int (default: 60)
+       pixscale in mas (30, 40 or 60)
+
+    Returns
+    -------
+    numpy.ndarray with psf, or the filename if filename_only==True
 
     """
 
@@ -31,14 +44,16 @@ def get_psf(ra_deg, dec_deg, filename_only=True, version='v3', pixscale=60):
         except:
             psf_idx = 0
 
+        filename = os.path.abspath(PSF_TMPL.format(version, pixscale, psf_idx))
+
         if psf_idx == 0:
             print(f"No psf for ({ra_deg}, {dec_deg}).")
             return 0
         elif filename_only:
-            print(PSF_TMPL.format(version, pixscale, psf_idx))
-            return PSF_TMPL.format(version, pixscale, psf_idx)
+            print(filename)
+            return filename
         else:
-            with fits.open(PSF_TMPL.format(version, pixscale, psf_idx)) as hdu2:
+            with fits.open(filename) as hdu2:
                 return hdu2[0].data
 
 
@@ -51,7 +66,7 @@ def main(args=None):
                         help="dec in degrees")
     parser.add_argument('-f', '--filename_only', type=bool, default=True,
                         help="return filename only (default: true)")
-    parser.add_argument('-v', '--version', type=str, default='v3',
+    parser.add_argument('-v', '--version', type=str, default=LATEST_VERSION,
                         help="version of psf to use (default: latest)")
     parser.add_argument('-p', '--pixscale', type=int, default=60,
                         choices=[30, 40, 60], help="pixscale in mas")
