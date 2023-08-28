@@ -18,5 +18,5 @@ psf = midis_psf.get_psf(0, 0, 5, filename_only=False, pixscale=40)              
 
 ## The Data (v5)
 See Boogaard et al. (in prep.) for more details.
-![psf_map](data-v2/map_psf.png)
+![psf_map](data-v5/map_psf.png)
 ![psf_tmpl](data-v5/60mas/psf9-recovered-v5-60mas.png)
