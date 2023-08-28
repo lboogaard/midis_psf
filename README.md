@@ -1,5 +1,13 @@
 # midis_psf
-MIRI Deep Imaging Survey PSF
+The MIRI Deep Imaging Survey (MIDIS) Point Spread Function (PSF)
+model.  For details, please refer to Appendix A of Boogaard et al. (in
+prep.).
+
+The empirical PSF models that were used to construct these PSFs can be
+found at https://github.com/jensmelinder/miripsfs.
+
+If you use either of the above PSF models, please cite Boogaard et
+al. (in prep.).
 
 ## Usage
 
@@ -16,7 +24,6 @@ psf = midis_psf.get_psf(53.1751187, -27.7665497, filename_only=False, pixscale=3
 psf = midis_psf.get_psf(0, 0, 5, filename_only=False, pixscale=40)                   # returns psf no. 5, at 40mas
 ```
 
-## The Data (v5)
-See Boogaard et al. (in prep.) for more details.
+## The Data
 ![psf_map](data-v5/map_psf.png)
 ![psf_tmpl](data-v5/60mas/psf9-recovered-v5-60mas.png)
