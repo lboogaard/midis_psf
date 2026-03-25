@@ -1,13 +1,20 @@
+> [!NOTE]
+> 
+> This repository is no longer updated. 
+> Please refer to the latest PSF models at the MIDIS data release webpage on [Zenodo](https://doi.org/10.5281/zenodo.15535600).
+> 
+> If you use these PSF models, please cite [Boogaard et al. 2024](https://ui.adsabs.harvard.edu/abs/2024ApJ...969...27B/abstract) as well as [Östlin et al. 2025](https://ui.adsabs.harvard.edu/abs/2025A%26A...696A..57O/abstract).
+
 # midis_psf
 The MIRI Deep Imaging Survey (MIDIS) Point Spread Function (PSF)
 model.  For details, please refer to Appendix A of [Boogaard et
-al. 2023b](https://arxiv.org/abs/2308.16895).
+al. 2024](https://ui.adsabs.harvard.edu/abs/2024ApJ...969...27B/abstract).
 
 The empirical PSF models that were used to construct these PSFs can be
 found at https://github.com/jensmelinder/miripsfs.
 
 If you use either of the above PSF models, please cite [Boogaard et
-al. 2023b](https://arxiv.org/abs/2308.16895).
+al. 2024](https://ui.adsabs.harvard.edu/abs/2024ApJ...969...27B/abstract).
 
 ## Usage
 
